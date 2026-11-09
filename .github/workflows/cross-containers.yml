@@ -1,19 +1,10 @@
 name: Build cross Docker containers
 
+# These cross-compilation containers are only used by the non-x86_64 release
+# builds, which are disabled for now. Keep the workflow available for manual
+# runs without triggering it on every relevant push.
 on:
-  push:
-    paths:
-      - .github/workflows/cross-containers.yml
-      - alpine-docker/config-aarch64.mak
-      - alpine-docker/config-arm.mak
-      - alpine-docker/config-armhf.mak
-      - alpine-docker/config-base.mak
-      - alpine-docker/config-powerpc64le.mak
-      - alpine-docker/config-riscv64.mak
-      - alpine-docker/config-i686.mak
-      - alpine-docker/docker-bake.hcl
-      - alpine-docker/save-versions.py
-      - alpine-docker/universal.Dockerfile
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
