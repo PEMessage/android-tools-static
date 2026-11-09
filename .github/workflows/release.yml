@@ -256,6 +256,10 @@ jobs:
     runs-on: ${{ needs.container-info.outputs.LINUX_VER }}
     name: Publish release
     needs: [container-info, process-archives]
+    # The default GITHUB_TOKEN is read-only in this repository, so ask for the
+    # permission needed by softprops/action-gh-release explicitly.
+    permissions:
+      contents: write
 
     environment: review-block
 
