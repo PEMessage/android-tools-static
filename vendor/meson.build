@@ -76,6 +76,8 @@ added_submodule_patches = {
     '0029-Add-support-for-Meson-Wrap-libusb-include.patch',
     '0030-WIN-fix-compilation.patch',
     '0031-WIN-fix-pointer-casting.patch',
+    '0032-adb-Allow-vendor-remapped-ff-ff-ff-USB-interface.patch',
+    '0033-adb-Accept-server-version-31-alongside-41.patch',
   ],
   'libziparchive': [
     '0003-WIN-fix-static-assert-failure.patch',

@@ -1,0 +1,27 @@
+From 5073e4a7b1b86f7a818f4a0ac5ac32dbd0a0d173 Mon Sep 17 00:00:00 2001
+From: android-tools-static <email@invalid.invalid>
+Date: Mon, 9 Nov 2026 19:05:40 +0800
+Subject: [PATCH] adb: accept server version 31 alongside 41
+
+---
+ client/adb_client.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/client/adb_client.cpp b/client/adb_client.cpp
+index 6b20151..127e43e 100644
+--- a/client/adb_client.cpp
++++ b/client/adb_client.cpp
+@@ -308,7 +308,9 @@ static bool __adb_check_server_version(std::string* error) {
+             }
+         }
+ 
+-        if (version != ADB_SERVER_VERSION) {
++        // Accept the older server version 31 as well. It speaks the same wire
++        // protocol, so there is no need to kill it just because it is older.
++        if (version != ADB_SERVER_VERSION && version != 31) {
+ #if defined(__linux__)
+             if (version > ADB_SERVER_VERSION && local) {
+                 // Try to re-exec the existing adb server's binary.
+-- 
+2.54.0
+
